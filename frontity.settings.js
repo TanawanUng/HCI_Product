@@ -19,7 +19,7 @@ const settings = {
             ],
             [
               "Nature",
-              "/category/nature/"
+              "/page/"
             ],
             [
               "Travel",

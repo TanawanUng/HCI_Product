@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import ReplayIcon from "@mui/icons-material/Replay";
+import History_card from "../historyPage/history_card";
 
 export function HomePage(props) {
   return (
@@ -28,7 +29,7 @@ export function HomePage(props) {
               sx={{ mt: 2, mb: 4, letterSpacing: 2 }}
             >
               {/* <Html2React html={content.content.rendered} /> */}
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
               <Button
@@ -40,7 +41,7 @@ export function HomePage(props) {
                   width: 200,
                 }}
               >
-                สร้างออเดอร์
+                <body1>สร้างออเดอร์</body1>
               </Button>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
@@ -59,15 +60,44 @@ export function HomePage(props) {
           </Grid>
           <Grid item xs={7}>
             <iframe
-              width="640"
-              height="360"
+              width="730"
+              height="420"
               src="https://www.youtube.com/embed/5qap5aO4i9A"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-           
+           <Stack direction="row" spacing={2} sx={{ mt: 2, mb: 4 }}>
+        <History_card
+          icon={<HourglassEmptyIcon />}
+          title="Pending"
+          amount="-"
+          color="#f48d40"
+          width={170}
+        />
+        <History_card
+          icon={<CloseIcon />}
+          title="Failure"
+          amount="18"
+          color="#e4606d"
+          width={170}
+        />
+        <History_card
+          icon={<CheckIcon />}
+          title="Success"
+          amount="120"
+          color="#55b96d"
+          width={170}
+        />
+        <History_card
+          icon={<LocationCityIcon />}
+          title="Total"
+          amount="138"
+          color="#425e72"
+          width={170}
+        />
+      </Stack>
           </Grid>
         </Grid>
       </Box>
