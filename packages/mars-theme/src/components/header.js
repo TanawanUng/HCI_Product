@@ -2,18 +2,39 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
+import { Grid, Box} from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+
+// import { useState } from "react";
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+
+
 
 const Header = ({ state }) => {
   return (
     <>
       <Container>
-        <StyledLink link="/">
-          <Title>{state.frontity.title}</Title>
-        </StyledLink>
-        <Description>{state.frontity.description}</Description>
-        <MobileMenu />
+        <Grid container spacing={2}>
+          <Grid item xs={7}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mt: 1 }}>
+            <Avatar src="/static/images/Logo.png" sx={{ width: 56, height: 56, mr:2 }} />
+            <Box>
+            <StyledLink link="/">
+              <Title>{state.frontity.title}</Title>
+            </StyledLink>
+            <Description>{state.frontity.description}</Description>
+            </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={5}>
+            <MobileMenu />
+            <Nav />
+          </Grid>
+        </Grid>
       </Container>
-      <Nav />
     </>
   );
 };
@@ -22,7 +43,7 @@ const Header = ({ state }) => {
 export default connect(Header);
 
 const Container = styled.div`
-  width: 848px;
+  width: 1200px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 24px;
@@ -30,16 +51,22 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  
 `;
 
 const Title = styled.h2`
   margin: 0;
-  margin-bottom: 16px;
+  margin-bottom: 2px;
+  font-family: Open Sans;
+  color: rgba(0, 0, 0, 1);
+  letter-spacing: 2px;
 `;
 
-const Description = styled.h4`
+const Description = styled.p`
   margin: 0;
-  color: rgba(255, 255, 255, 0.7);
+  font-family: Prompt;
+  color: rgba(0, 0, 0, 1);
+  letter-spacing: 1.5px;
 `;
 
 const StyledLink = styled(Link)`

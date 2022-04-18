@@ -6,6 +6,8 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
+import {HomePage} from "./homePage";
+import {HistoryPage} from "./historyPage";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -15,10 +17,15 @@ import PageError from "./page-error";
  *
  * @returns The top-level react component representing the theme.
  */
-const Theme = ({ state }) => {
+ const Theme = ({ state, libraries }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-
+  console.log(data)
+  // Get the data of the post.
+  // const content = state.source[data.type][data.id];
+  // // Get the html2react component.
+  // const Html2React = libraries.html2react.Component;
+  
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -42,6 +49,8 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
+          <HomePage when={data.isHome} />
+          <HistoryPage when={data.isHistory} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -56,9 +65,7 @@ export default connect(Theme);
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,"Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   a,
   a:visited {
     color: inherit;
@@ -70,7 +77,8 @@ const HeadContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #1f38c5;
+  background-color: #fffff;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 `;
 
 const Main = styled.div`
@@ -82,3 +90,5 @@ const Main = styled.div`
     rgba(66, 174, 228, 0)
   );
 `;
+
+

@@ -1,10 +1,10 @@
 const settings = {
-  "name": "my-first-frontity-project",
+  "name": "HCI-my-first-frontity-project",
   "state": {
     "frontity": {
       "url": "https://test.frontity.org",
-      "title": "Test Frontity Blog",
-      "description": "WordPress installation for Frontity development"
+      "title": "Education Smart Factory Platform",
+      "description": "ระบบการเรียนรู้ระยะไกลของโรงงานอัจฉริยะ"
     }
   },
   "packages": [
@@ -26,8 +26,8 @@ const settings = {
               "/category/travel/"
             ],
             [
-              "Japan",
-              "/tag/japan/"
+              "History",
+              "/history"
             ],
             [
               "About Us",
@@ -45,7 +45,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "url": "https://demo24952240.wordpress.com/"
         }
       }
     },

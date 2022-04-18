@@ -17,11 +17,17 @@
   },
   "prettier": {},
   "dependencies": {
-    "frontity": "^1.17.2",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "@frontity/core": "^1.15.1",
-    "@frontity/wp-source": "^1.11.7",
-    "@frontity/tiny-router": "^1.4.4",
     "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme"
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.4.4",
+    "@frontity/wp-source": "^1.11.7",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.3",
+    "@mui/styled-engine-sc": "^5.5.2",
+    "frontity": "^1.17.2",
+    "styled-components": "^5.3.5"
   }
 }
