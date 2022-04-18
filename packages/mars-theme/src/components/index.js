@@ -24,14 +24,17 @@ import { yellow } from '@mui/material/colors';
  *
  * @returns The top-level react component representing the theme.
  */
-const Theme = ({ state }) => {
+const Theme = ({ state, libraries }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   console.log(data)
   console.log(data.route === "/")
   console.log(data.route === "/about-us/")
-  const contents = state.source.get(state.router.link);
-  const content = state.source[contents.type][contents.id];
+  // Get the data of the post.
+  const content = state.source[data.type][data.id];
+  console.log(content)
+  // Get the html2react component.
+  const Html2React = libraries.html2react.Component;
 
   return (
     <>
@@ -88,8 +91,7 @@ const Theme = ({ state }) => {
                     <b>Product Customization</b><ReplayIcon fontSize="large" />
                   </Typography>
                   <Typography variant="body1" gutterBottom sx={{ width: '380px', mt: 2, mb: 4, letterSpacing: 2 }}>
-                    {content.content.rendered}
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                    <Html2React html={content.content.rendered} />
                   </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                     <Button variant="contained" size="large" sx={{ borderRadius: 28, backgroundColor: "#f27f29", width: 200 }}>สร้างออเดอร์</Button>
