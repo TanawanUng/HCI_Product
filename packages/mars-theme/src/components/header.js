@@ -2,10 +2,22 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
+import { Avatar, Box } from '@mui/material';
 
 const Header = ({ state }) => {
   return (
-    <>
+    <Box 
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <Avatar
+        alt="Logo"
+        src="https://mui.com/static/images/avatar/1.jpg"
+        sx={{ width: 56, height: 56, ml: 3 }}
+      />
       <Container>
         <StyledLink link="/">
           <Title>{state.frontity.title}</Title>
@@ -14,7 +26,7 @@ const Header = ({ state }) => {
         <MobileMenu />
       </Container>
       <Nav />
-    </>
+    </Box>
   );
 };
 
@@ -22,11 +34,10 @@ const Header = ({ state }) => {
 export default connect(Header);
 
 const Container = styled.div`
-  width: 848px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 24px;
-  color: #fff;
+  color: #000;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -39,7 +50,8 @@ const Title = styled.h2`
 
 const Description = styled.h4`
   margin: 0;
-  color: rgba(255, 255, 255, 0.7);
+  margin-top: -0.5rem;
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 const StyledLink = styled(Link)`

@@ -28,6 +28,7 @@ const Post = ({ state, actions, libraries }) => {
   const data = state.source.get(state.router.link);
   // Get the data of the post.
   const post = state.source[data.type][data.id];
+  console.log(post.content.rendered)
   // Get the data of the author.
   const author = state.source.author[post.author];
   // Get a human readable date.

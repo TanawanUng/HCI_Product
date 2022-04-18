@@ -3,8 +3,8 @@ const settings = {
   "state": {
     "frontity": {
       "url": "https://test.frontity.org",
-      "title": "Test Frontity Blog",
-      "description": "WordPress installation for Frontity development"
+      "title": "Education Smart Factory Platform",
+      "description": "ระบบการเรียนรู้ระยะไกลของโรงงานอัจฉริยะ"
     }
   },
   "packages": [
@@ -14,23 +14,19 @@ const settings = {
         "theme": {
           "menu": [
             [
-              "Home",
+              "หน้าหลัก",
               "/"
             ],
             [
-              "Nature",
+              "ประกาศ",
               "/category/nature/"
             ],
             [
-              "Travel",
-              "/category/travel/"
+              "บริการ",
+              "/history/"
             ],
             [
-              "Japan",
-              "/tag/japan/"
-            ],
-            [
-              "About Us",
+              "เกี่ยวกับเรา",
               "/about-us/"
             ]
           ],
@@ -45,7 +41,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "url": "https://demo24952240.wordpress.com"
         }
       }
     },

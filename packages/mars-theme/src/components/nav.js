@@ -30,7 +30,7 @@ export default connect(Nav);
 const NavContainer = styled.nav`
   list-style: none;
   display: flex;
-  width: 848px;
+  justify-content: right;
   max-width: 100%;
   box-sizing: border-box;
   padding: 0 24px;
@@ -45,7 +45,7 @@ const NavContainer = styled.nav`
 const NavItem = styled.div`
   padding: 0;
   margin: 0 16px;
-  color: #fff;
+  color: #000;
   font-size: 0.9em;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -57,7 +57,7 @@ const NavItem = styled.div`
     border-bottom-color: transparent;
     /* Use for semantic approach to style the current link */
     &[aria-current="page"] {
-      border-bottom-color: #fff;
+      border-bottom-color: #000;
     }
   }
 
