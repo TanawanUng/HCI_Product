@@ -19,7 +19,7 @@ const settings = {
             ],
             [
               "ประกาศ",
-              "/category/nature/"
+              "/newmain/"
             ],
             [
               "บริการ",
