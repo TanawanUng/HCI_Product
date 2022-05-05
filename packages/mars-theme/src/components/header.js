@@ -33,7 +33,7 @@ const Header = ({ state }) => {
             <MobileMenu />
             <Nav />
           </Grid>
-        </Grid>
+        </Grid>//
       </Container>
     </>
   );
@@ -44,6 +44,7 @@ export default connect(Header);
 
 const Container = styled.div`
   width: 1200px;
+  height: 64px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 24px;
@@ -54,7 +55,7 @@ const Container = styled.div`
   
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   margin: 0;
   margin-bottom: 2px;
   font-family: Open Sans;
