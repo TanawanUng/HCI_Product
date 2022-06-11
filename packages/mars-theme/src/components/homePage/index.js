@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import BasicCard from '../table/card'
+import StatusCard from '../table/card'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
@@ -169,15 +169,21 @@ function HomePage({ lorem }) {
 
                 </Grid>
                 <Grid item xs={12} md={7} order={{ xs: 1, md: 2 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', m: 1 }}>
+                        <Box sx={{ position: 'relative', overflow: 'hidden', width: '100%', paddingTop: '56.25%' }} >
+                            <Box sx={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0', bottom: '0', right: '0' }}>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            </Box>
+                        </Box>
                     </Box>
-                    <Stack direction="row" spacing={2} sx={{ mt: 2, mb: 4 }}>
-                        <BasicCard icon={<HourglassEmptyIcon />} title="Pending" amount="-" color="#f48d40" width={155} />
-                        <BasicCard icon={<CloseIcon />} title="Failure" amount="18" color="#e4606d" width={155} />
-                        <BasicCard icon={<CheckIcon />} title="Success" amount="120" color="#55b96d" width={155} />
-                        <BasicCard icon={<LocationCityIcon />} title="Total" amount="138" color="#425e72" width={155} />
-                    </Stack>
+                    <Box sx={{ width: '100%' }}>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                            <StatusCard icon={<HourglassEmptyIcon />} title="Pending" amount="-" color="#f48d40" />
+                            <StatusCard icon={<CloseIcon />} title="Failure" amount="18" color="#e4606d" />
+                            <StatusCard icon={<CheckIcon />} title="Success" amount="120" color="#55b96d" />
+                            <StatusCard icon={<LocationCityIcon />} title="Total" amount="138" color="#425e72" />
+                        </Box>
+                    </Box>
                 </Grid>
 
             </Grid>

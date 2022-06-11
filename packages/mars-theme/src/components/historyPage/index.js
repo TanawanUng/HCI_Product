@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import EnhancedTableHead from '../table/table'
-import BasicCard from '../table/card'
+import StatusCard from '../table/card'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
@@ -18,12 +18,14 @@ function HistoryPage() {
                     Create Order | History
                 </Typography>
             </Box>
-            <Stack direction="row" spacing={2} sx={{ mt: 2, mb: 4 }}>
-                <BasicCard icon={<HourglassEmptyIcon />} title="Pending" amount="-" color="#f48d40" width={275} />
-                <BasicCard icon={<CloseIcon />} title="Failure" amount="18" color="#e4606d" width={275} />
-                <BasicCard icon={<CheckIcon />} title="Success" amount="120" color="#55b96d" width={275} />
-                <BasicCard icon={<LocationCityIcon />} title="Total" amount="138" color="#425e72" width={275} />
-            </Stack>
+            <Box sx={{ width: '100%', mt: 2, mb: 4 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <StatusCard icon={<HourglassEmptyIcon />} title="Pending" amount="-" color="#f48d40" />
+                    <StatusCard icon={<CloseIcon />} title="Failure" amount="18" color="#e4606d" />
+                    <StatusCard icon={<CheckIcon />} title="Success" amount="120" color="#55b96d" />
+                    <StatusCard icon={<LocationCityIcon />} title="Total" amount="138" color="#425e72" />
+                </Box>
+            </Box>
             <EnhancedTableHead />
         </div>
     )
