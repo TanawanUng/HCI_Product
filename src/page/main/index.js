@@ -43,8 +43,7 @@ const status = [
 ]
 
 function Main() {
-
-    const [page, setPage] = useState(1)
+    const [order, setOrder] = useState(1)
 
     return (
         <Box sx={{ flexGrow: 1, mt: 20, mx: { xs: 4, md: 15 } }}>
@@ -52,14 +51,14 @@ function Main() {
                 <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
                     <Box textAlign='center' sx={{ px: { xs: 0, lg: 28 } }}>
                         <Typography variant="h5" gutterBottom align="left" sx={{ letterSpacing: 3 }}>
-                            <b>Product Customization</b><RefreshIcon fontSize="large" sx={{ mb: -1 }} onClick={() => setPage(1)} />
+                            <b>Product Customization</b><RefreshIcon fontSize="large" sx={{ mb: -1 }} onClick={() => setOrder(1)} />
                         </Typography>
                         {
                             {
-                                '1': <Information setPage={setPage} />,
-                                '2': <DndProvider backend={HTML5Backend}><CreateOrder setPage={setPage} /></DndProvider>,
-                                '3': <Confirmation setPage={setPage} />
-                            }[page]
+                                '1': <Information setOrder={setOrder} />,
+                                '2': <DndProvider backend={HTML5Backend}><CreateOrder setOrder={setOrder} /></DndProvider>,
+                                '3': <Confirmation setOrder={setOrder} />
+                            }[order]
                         }
                     </Box>
                 </Grid>

@@ -50,12 +50,11 @@ const PictureList = [
     },
 ];
 
-function CreateOrder() {
-
+function CreateOrder({ setOrder }) {
     const handleClick = event => {
 
         if (count === 1 && count2 === 1 && count3 === 1 && count4 === 1) {
-            setOrder(2)
+            setOrder(3)
             let order_ = [pic1, pic2, pic3, pic4]
             order_ = String(order_)
 
@@ -71,7 +70,6 @@ function CreateOrder() {
 
     };
 
-    const [order, setOrder] = useState(0)
     const [reset, setOrder_reset] = useState(0)
 
     const [board, setBoard] = useState([]);
@@ -168,10 +166,10 @@ function CreateOrder() {
 
                     <Stack direction="row" justifyContent="center" alignItems="center" sx={{ flexWrap: 'wrap' }}>
 
-                        {PictureList.map((picture) => {
+                        {PictureList.map((picture, index) => {
 
 
-                            return <Picture url={picture.url} id={picture.id} />
+                            return <Picture url={picture.url} id={picture.id} key={index} />
 
                         })
 
