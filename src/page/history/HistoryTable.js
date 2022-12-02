@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import Chip from '@mui/material/Chip';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,7 +16,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -21,9 +23,6 @@ import Switch from '@mui/material/Switch';
 // import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import Chip from '@mui/material/Chip';
-import axios from "axios";
-import React from "react";
 import { NoEncryption } from "@mui/icons-material";
 
 function createData(order_id, user, start_time, finish_time, a1, b2, c3, d4, status) {
@@ -33,14 +32,14 @@ function createData(order_id, user, start_time, finish_time, a1, b2, c3, d4, sta
 }
 
 
-let rows = [];
-// createData(293, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Success'),
-// createData(234, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Failed'),
-// createData(238, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Pending'),
-// createData(239, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Success'),
-// createData(240, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Success'),
-// createData(241, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00','red','green','blue','yellow','Success'),
-
+let rows = [
+  createData(293, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Success'),
+  createData(234, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Failed'),
+  createData(238, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Pending'),
+  createData(239, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Success'),
+  createData(240, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Success'),
+  createData(241, 'SMART FACTORY HCI LAB', '00:00:00', '00:00:00', 'red', 'green', 'blue', 'yellow', 'Success'),
+];
 
 
 function descendingComparator(a, b, orderBy) {

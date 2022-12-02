@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from './page/navbar/Navbar';
+import Navbar from './page/navbar';
 
-import Main from './page/main/Main';
+import Main from './page/main';
 
-import HistoryPage from './page/history/HistoryPage';
+import History from './page/history';
 
 function App() {
 
@@ -19,7 +18,7 @@ function App() {
         <Route path="/" exact element={<Main />} />
 
         {/* History Page */}
-        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,8 +7,10 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-import StatusCard from '../globalComponent/StatusCard'
+import StatusCard from '../global-component/StatusCard'
 import Information from './Information';
 import CreateOrder from './CreateOrder';
 import Confirmation from './Confirmation';
@@ -50,13 +52,13 @@ function Main() {
                 <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
                     <Box textAlign='center' sx={{ px: { xs: 0, lg: 28 } }}>
                         <Typography variant="h5" gutterBottom align="left" sx={{ letterSpacing: 3 }}>
-                            <b>Product Customization</b><RefreshIcon fontSize="large" sx={{ mb: -1 }} />
+                            <b>Product Customization</b><RefreshIcon fontSize="large" sx={{ mb: -1 }} onClick={() => setPage(1)} />
                         </Typography>
                         {
                             {
-                                '1': <Information setPage={setPage}/>,
-                                '2': <CreateOrder setPage={setPage}/>,
-                                '3': <Confirmation setPage={setPage}/>
+                                '1': <Information setPage={setPage} />,
+                                '2': <DndProvider backend={HTML5Backend}><CreateOrder setPage={setPage} /></DndProvider>,
+                                '3': <Confirmation setPage={setPage} />
                             }[page]
                         }
                     </Box>
@@ -67,7 +69,7 @@ function Main() {
                         <Grid container>
                             {status.map((status, index) =>
                                 <Grid item xs={6} lg={3} sx={(index % 2 === 0) ? { pl: { xs: 0, sm: 10, md: 0 } } : { pr: { xs: 0, sm: 10, md: 0 } }} key={index}>
-                                    <StatusCard icon={status.icon} title={status.title} amount={status.amount} color={status.color}/>
+                                    <StatusCard icon={status.icon} title={status.title} amount={status.amount} color={status.color} />
                                 </Grid>
                             )}
                         </Grid>

@@ -54,7 +54,7 @@ function CreateOrder() {
 
     const handleClick = event => {
 
-        if (count == 1 && count2 == 1 && count3 == 1 && count4 == 1) {
+        if (count === 1 && count2 === 1 && count3 === 1 && count4 === 1) {
             setOrder(2)
             let order_ = [pic1, pic2, pic3, pic4]
             order_ = String(order_)

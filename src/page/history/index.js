@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 import HistoryTable from './HistoryTable'
-import StatusCard from '../globalComponent/StatusCard'
+import StatusCard from '../global-component/StatusCard'
 
 const status = [
   {
