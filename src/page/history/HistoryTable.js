@@ -353,12 +353,12 @@ export default function EnhancedTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box width="fit-content" sx={{ minWidth: { xs: "300px", sm: "600px", md: "900px" }, width: { xs: "300px", sm: "600px", md: "900px" } }} >
+    <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
-            sx={{ minWidth: { xs: "350px", sm: "600px", md: "900px" } }}
+            sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
           >
