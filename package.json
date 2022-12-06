@@ -12,10 +12,12 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.0",
+    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
+    "react-hls-player": "^3.0.7",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
@@ -25,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "cross-env REACT_APP_ENV=production npm run build"
   },
   "eslintConfig": {
     "extends": [

@@ -9,6 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import ReactHlsPlayer from 'react-hls-player';
 
 import StatusCard from '../global-component/StatusCard'
 import Information from './Information';
@@ -64,7 +65,14 @@ function Main() {
                 </Grid>
                 <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
                     <Box textAlign='center'>
-                        <iframe src="https://www.youtube.com/embed/V45kXIaQYM0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        {/* <iframe src="https://www.youtube.com/embed/V45kXIaQYM0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
+                        <ReactHlsPlayer
+                            src="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
+                            autoPlay={false}
+                            controls={true}
+                            width="100%"
+                            height="auto"
+                        />
                         <Grid container>
                             {status.map((status, index) =>
                                 <Grid item xs={6} lg={3} sx={(index % 2 === 0) ? { pl: { xs: 0, sm: 10, md: 0 } } : { pr: { xs: 0, sm: 10, md: 0 } }} key={index}>
