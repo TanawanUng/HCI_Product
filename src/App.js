@@ -12,19 +12,6 @@ import History from './page/history';
 const theme = createTheme({
   typography: {
     fontFamily: 'Noto Sans Thai',
-    // h4: {
-    //   fontFamily: 'Noto Sans Thai',
-    // },
-    // h5: {
-    //   fontFamily: 'Noto Sans Thai',
-    // },
-    // body1: {
-    //   fontFamily: 'Noto Sans Thai',
-    // },
-    // p: {
-    //   fontFamily: 'Noto Sans Thai',
-    // },
-  },
 });
 
 function App() {
