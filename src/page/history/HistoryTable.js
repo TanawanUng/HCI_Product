@@ -355,7 +355,7 @@ export default function EnhancedTable() {
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size='medium'
+            size="medium"                                                   //change to 'small for dense'
           >
             <EnhancedTableHead
               numSelected={selected.length}
