@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useDrop } from "react-dnd";
 import Button from '@mui/material/Button';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -7,7 +8,9 @@ import CardHeader from "@mui/material/CardHeader";
 import Grid from '@mui/material/Grid';
 import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography';
-import { useDrop } from "react-dnd";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import Avatar from '@mui/material/Avatar';
+import { red } from '@mui/material/colors';
 
 import DragDrop from "./DragDrop";
 import Picture from "./Picture";
@@ -139,7 +142,12 @@ function CreateOrder({ setOrder }) {
     return (
         <Card sx={{ width: { xs: 300, md: 430, sm: 400, alignItems: "center" } }} >
             <CardHeader
-                title="สร้างออเดอร์"
+                avatar={
+                    <KeyboardArrowLeftIcon fontSize="large" onClick={() => setOrder(1)} />
+                }
+                title={
+                    <Typography variant="h5" sx={{ ml: -6.5 }}>สร้างออเดอร์</Typography>
+                }
                 sx={{
                     backgroundColor: "#f27f29",
                 }}

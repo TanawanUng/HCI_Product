@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import ReactHlsPlayer from 'react-hls-player';
@@ -15,6 +15,40 @@ import StatusCard from '../global-component/StatusCard'
 import Information from './Information';
 import CreateOrder from './CreateOrder';
 import Confirmation from './Confirmation';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#374454',
+        },
+        secondary: {
+            main: '#f27314',
+        },
+    },
+    typography: {
+        h4: {
+            fontFamily: 'Noto Sans Thai',
+        },
+        h5: {
+            fontFamily: 'Noto Sans Thai',
+            fontWeight: 600,
+            color: '#374454',
+        },
+        body1: {
+            fontFamily: 'Noto Sans Thai',
+            color: '#374454',
+        },
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: () => ({
+                    fontFamily: 'Noto Sans Thai',
+                }),
+            },
+        },
+    },
+});
 
 const status = [
     {
@@ -37,7 +71,7 @@ const status = [
     },
     {
         title: "Total",
-        icon: <LocationCityIcon />,
+        icon: <InventoryIcon />,
         amount: "138",
         color: "#425e72"
     }
@@ -47,43 +81,46 @@ function Main() {
     const [order, setOrder] = useState(1)
 
     return (
-        <Box sx={{ flexGrow: 1, mt: 20, mx: { xs: 4, md: 15 } }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
-                    <Box textAlign='center' sx={{ px: { xs: 0, lg: 28 } }}>
-                        <Typography variant="h5" gutterBottom align="left" sx={{ letterSpacing: 3 }}>
-                            <b>Product Customization</b><RefreshIcon fontSize="large" sx={{ mb: -1 }} onClick={() => setOrder(1)} />
-                        </Typography>
-                        {
+        <Box sx={{ flexGrow: 1, mt: 18, mx: { xs: 4, md: 15 } }}>
+            <ThemeProvider theme={theme}>
+                <Box textAlign='center' sx={{ px: { xs: 0, lg: 8, xl: 28 } }}>
+                    <Typography variant="h5" gutterBottom align="left" sx={{ letterSpacing: 3, mr: 1, my: 1 }}>
+                        <b>Product Customization</b>
+                    </Typography>
+                </Box>
+                <Grid container spacing={2} sx={{ mt: 0 }}>
+                    <Grid item xs={12} md={6}>
+                        <Box textAlign='center' sx={{ px: { xs: 0, lg: 8, xl: 28 } }}>
                             {
-                                '1': <Information setOrder={setOrder} />,
-                                '2': <DndProvider backend={HTML5Backend}><CreateOrder setOrder={setOrder} /></DndProvider>,
-                                '3': <Confirmation setOrder={setOrder} />
-                            }[order]
-                        }
-                    </Box>
+                                {
+                                    '1': <Information setOrder={setOrder} />,
+                                    '2': <DndProvider backend={HTML5Backend}><CreateOrder setOrder={setOrder} /></DndProvider>,
+                                    '3': <Confirmation setOrder={setOrder} />
+                                }[order]
+                            }
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Box textAlign='center'>
+                            <ReactHlsPlayer
+                                src="https://stream.hcilab.net/hls/smartfactory1.m3u8"
+                                autoPlay={false}
+                                controls={true}
+                                width="100%"
+                                height="auto"
+                            />
+                            <Grid container spacing={2} sx={{ mt: 2 }}>
+                                {status.map((status, index) =>
+                                    <Grid item xs={6} sm={3} key={index}>
+                                        <StatusCard icon={status.icon} title={status.title} amount={status.amount} color={status.color} />
+                                    </Grid>
+                                )}
+                            </Grid>
+                        </Box>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
-                    <Box textAlign='center'>
-                        {/* <iframe src="https://www.youtube.com/embed/V45kXIaQYM0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-                        <ReactHlsPlayer
-                            src="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
-                            autoPlay={false}
-                            controls={true}
-                            width="100%"
-                            height="auto"
-                        />
-                        <Grid container>
-                            {status.map((status, index) =>
-                                <Grid item xs={6} lg={3} sx={(index % 2 === 0) ? { pl: { xs: 0, sm: 10, md: 0 } } : { pr: { xs: 0, sm: 10, md: 0 } }} key={index}>
-                                    <StatusCard icon={status.icon} title={status.title} amount={status.amount} color={status.color} />
-                                </Grid>
-                            )}
-                        </Grid>
-                    </Box>
-                </Grid>
-            </Grid>
-        </Box>
+            </ThemeProvider>
+        </Box >
     )
 }
 

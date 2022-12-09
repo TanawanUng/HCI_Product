@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 function Confirmation({ setOrder }) {
   const [reset, setOrder_reset] = useState(0)
@@ -13,10 +14,15 @@ function Confirmation({ setOrder }) {
   return (
     <Card sx={{ width: { xs: 300, md: 430, sm: 400, alignItems: "center" } }}>
       <CardHeader
-        title="สร้างออเดอร์"
+        title={
+          <Typography variant="h5" sx={{ mr: -3.4 }}>สร้างออเดอร์</Typography>
+        }
         sx={{
           backgroundColor: "#f27f29",
         }}
+        action={
+          <RefreshIcon fontSize="large" viewBox="0 -2 24 24" onClick={() => setOrder(1)} />
+        }
       />
 
       <CardContent>
@@ -26,18 +32,23 @@ function Confirmation({ setOrder }) {
           <Typography display="inline">Stop&nbsp; time: 00.00.00<br /></Typography>
 
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Button
-              onClick={() => setOrder(2)}
+            <Box
+              // onClick={() => setOrder(2)}
               variant="contained"
               size="large"
               sx={{
                 borderRadius: 28,
                 backgroundColor: "#f27f29",
                 width: 220,
+                height: 40,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
               }}
             >
               <body1>STATUS:PENDING</body1>
-            </Button>
+            </Box>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
             <Button
