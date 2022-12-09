@@ -189,8 +189,8 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
+        {/* <TableCell padding="checkbox">
+          <Checkbox                                                   //ไม่เอา select (Header)
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -199,12 +199,12 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
             // align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            padding="normal"                                          //ไม่เอา select (เคยเป็น {headCell.disablePadding ? 'none' : 'normal'})
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -384,7 +384,7 @@ export default function EnhancedTable() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      {/* <TableCell padding="checkbox">              //ไม่เอา select (Content)
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -392,12 +392,12 @@ export default function EnhancedTable() {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
+                      </TableCell> */}
                       <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
-                        padding="none"
+                        padding="normal"                              //ไม่เอา select (เคยเป็น "none")
                       >
                         {row.order_id}
                       </TableCell>
