@@ -12,6 +12,7 @@ import History from './page/history';
 const theme = createTheme({
   typography: {
     fontFamily: 'Noto Sans Thai',
+  }
 });
 
 function App() {
