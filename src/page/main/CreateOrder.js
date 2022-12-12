@@ -152,9 +152,12 @@ function CreateOrder({ setOrder }) {
 
                 {/* ========================== Start Drag Section ========================== */}
                 <Grid item xs={12}>
-                    {PictureList.map((picture, index) => {
+                    {/* {PictureList.map((picture, index) => {
                         return <Picture url={picture.url} id={picture.id} key={index} />
-                    })}
+                    })} */}
+                    <Box sx={{height: { xs: "130px", sm: "200px" }}}>
+                        <RandomPicture />
+                    </Box>
                 </Grid>
                 {/* ========================== End Drag Section ========================== */}
 
@@ -251,6 +254,38 @@ function CreateOrder({ setOrder }) {
             </Grid>
         </Box >
     )
+};
+
+const RandomPicture = () => {
+    let xxs, yxs, xsm, ysm;
+
+    const getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    };
+
+    return PictureList.map((picture, index) => {
+        xxs = getRandomInt(10, 70);
+        yxs = getRandomInt(33, 44);
+        xsm = getRandomInt(10, 40);
+        ysm = getRandomInt(27, 37);
+        return (
+            // <Box
+            //     key={index}
+            //     // ref={drag}
+            //     component="img"
+            //     src={picture.url}
+
+            //     sx={{
+            //         position: "absolute",
+            //         top: `${y + index}%`,
+            //         left: `${x + index}%`,
+            //     }}
+            // />
+            <Picture url={picture.url} id={picture.id} key={index} index={index} xxs={xxs} yxs={yxs} xsm={xsm} ysm={ysm} />
+        );
+    });
 };
 
 export default CreateOrder

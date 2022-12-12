@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { useDrag } from "react-dnd";
 
-function Picture({ id, url }) {
+function Picture({ id, url, index, xxs, yxs, xsm, ysm }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "image",
     item: { id: id },
@@ -18,7 +18,13 @@ function Picture({ id, url }) {
       src={url}
 
       // border="3px solid black"
-      sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" } }}
+      sx={{
+        alignItems: "center",
+        width: { xs: "64px", sm: "128px" },
+        position: "absolute",
+        top: { xs: `${yxs + index}%`, sm: `${ysm + index}%` },
+        left: { xs: `${xxs + index}%`, sm: `${xsm + index}%` },
+      }}
     // { border: isDragging ? "1px solid pink" : "0px"},
     />
   );
