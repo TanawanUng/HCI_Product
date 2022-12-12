@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useDrop } from "react-dnd";
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardHeader from "@mui/material/CardHeader";
 import Grid from '@mui/material/Grid';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import Stack from "@mui/material/Stack";
 import Typography from '@mui/material/Typography';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
 
 import DragDrop from "./DragDrop";
 import Picture from "./Picture";
@@ -18,45 +18,38 @@ import Picture from "./Picture";
 const PictureList = [
     {
         id: 1,
-        description: "red",
+        description: "grape",
         url:
-            "http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQlO_2ts2YDGtpdafB8JDZzGVfyKlmFCn7paIJmTsKhfbev0I3O-OoMwgHJUDjSTc-KbjZge4_FgB2BUqVblVM",
+            require("../../assets/grape.png"),
     },
     {
         id: 2,
-        description: "green",
+        description: "mango",
         url:
-            "https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU=",
+            require("../../assets/mango.png"),
     },
     {
         id: 3,
-        description: "yellow",
+        description: "pineapple",
         url:
-            "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg",
+            require("../../assets/pineapple.png"),
     },
     {
         id: 4,
-        description: "yellow",
+        description: "strawberry",
         url:
-            "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg",
-    },
-    {
-        id: 5,
-        description: "yellow",
-        url:
-            "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg",
-    }, {
-        id: 6,
-        description: "yellow",
-        url:
-            "https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg",
+            require("../../assets/strawberry.png"),
     },
 ];
 
-function CreateOrder({ setOrder }) {
-    const handleClick = event => {
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-        if (count === 1 && count2 === 1 && count3 === 1 && count4 === 1) {
+function CreateOrder({ setOrder }) {
+    const handleClick = () => {
+
+        if (count1 === 1 && count2 === 1 && count3 === 1 && count4 === 1) {
             setOrder(3)
             let order_ = [pic1, pic2, pic3, pic4]
             order_ = String(order_)
@@ -70,20 +63,20 @@ function CreateOrder({ setOrder }) {
             axios.post("http://192.168.150.28:3000/order/update/123456", sendapi)
 
         }
+        handleAlertClick()
 
     };
 
-    const [reset, setOrder_reset] = useState(0)
-
-    const [board, setBoard] = useState([]);
+    const [board1, setBoard1] = useState([]);
     const [board2, setBoard2] = useState([]);
     const [board3, setBoard3] = useState([]);
     const [board4, setBoard4] = useState([]);
-    const [{ isOver }, drop] = useDrop(() => ({
+
+    const [{ isOver1 }, drop] = useDrop(() => ({
         accept: "image",
         drop: (item) => addImageToBoard(item.id),
         collect: (monitor) => ({
-            isOver: !!monitor.isOver(),
+            isOver1: !!monitor.isOver(),
         }),
     }));
     const [{ isOver2 }, drop2] = useDrop(() => ({
@@ -110,12 +103,11 @@ function CreateOrder({ setOrder }) {
 
     const addImageToBoard = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-
-        setBoard([pictureList[0]]);
+        setBoard1([pictureList[0]]);
     };
     const addImageToBoard2 = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-        // onsole.log(id)
+        // console.log(id)
         setBoard2([pictureList[0]]);
     };
 
@@ -128,7 +120,7 @@ function CreateOrder({ setOrder }) {
         setBoard4([pictureList[0]]);
     };
 
-    let count = 0;
+    let count1 = 0;
     let count2 = 0;
     let count3 = 0;
     let count4 = 0;
@@ -138,58 +130,49 @@ function CreateOrder({ setOrder }) {
     let pic3 = "";
     let pic4 = "";
 
+    // ========================== Start Alert Section ==========================
+    const [alertOpen, setAlertOpen] = useState(false);
+
+    const handleAlertClick = () => {
+        setAlertOpen(true);
+    };
+
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setAlertOpen(false);
+    };
+    // ========================== End Alert Section ==========================
 
     return (
         <Card sx={{ width: { xs: 300, md: 430, sm: 400, alignItems: "center" } }} >
-            <CardHeader
-                avatar={
-                    <KeyboardArrowLeftIcon fontSize="large" onClick={() => setOrder(1)} />
-                }
-                title={
-                    <Typography variant="h5" sx={{ ml: -6.5 }}>สร้างออเดอร์</Typography>
-                }
-                sx={{
-                    backgroundColor: "#f27f29",
-                }}
-            />
+            <Box sx={{ backgroundColor: '#f27314', py: 1 }}>
+                <Stack direction="row" spacing={2}>
+                    <KeyboardArrowLeftIcon fontSize="large" onClick={() => setOrder(1)} sx={{ color: '#fff' }} />
+                    <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
+                        สร้างออเดอร์
+                    </Typography>
+                </Stack>
+            </Box>
             <CardContent>
                 <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
 
                     {/* <Grid sx={{maxWidth:"400px" }} > */}
-                    {reset === 1 &&
-                        setBoard([])
-                    }
-                    {reset === 1 &&
-                        setBoard2([])
-                    }
-                    {reset === 1 &&
-                        setBoard3([])
-                    }
-                    {reset === 1 &&
-                        setBoard4([])
-                    }
-                    {reset === 1 &&
-                        setOrder_reset(0)
-                    }
 
                     <Stack direction="row" justifyContent="center" alignItems="center" sx={{ flexWrap: 'wrap' }}>
-
                         {PictureList.map((picture, index) => {
-
-
                             return <Picture url={picture.url} id={picture.id} key={index} />
-
-                        })
-
-                        }
+                        })}
                     </Stack>
 
                     <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                         <Typography>
                             Item 1
                             <Grid ref={drop} style={{ backgroundColor: 'white', width: '115px', height: '55px', border: "2px solid black" }} >
-                                {board.map((picture) => {
-                                    count = 1
+                                {board1.map((picture) => {
+                                    count1 = 1
                                     pic1 = picture.description
                                     console.log(picture.id)
 
@@ -231,7 +214,6 @@ function CreateOrder({ setOrder }) {
                             <Grid ref={drop4} style={{ backgroundColor: 'white', width: '115px', height: '55px', alignItems: "center", border: "2px solid black" }} >
 
                                 {board4.map((picture) => {
-                                    console.log(count)
                                     count4 = 1
                                     pic4 = picture.description
                                     return <Picture url={picture.url} id={picture.id} />;
@@ -242,7 +224,7 @@ function CreateOrder({ setOrder }) {
                     </Stack>
                     <Grid justifyContent="space-around" container spacing={1} width="250px"  >
                         <Button
-                            onClick={() => setOrder_reset(1)}
+                            onClick={() => { setBoard1([]); setBoard2([]); setBoard3([]); setBoard4([]); }}
                             variant="contained"
                             size="large"
                             sx={{
@@ -266,6 +248,11 @@ function CreateOrder({ setOrder }) {
                         >
                             ORDER
                         </Button>
+                        <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
+                            <Alert onClose={handleAlertClose} severity="error" sx={{ width: '100%' }}>
+                                กรุณาใส่ผลไม้ให้ครบก่อนไปขั้นตอนถัดไป!
+                            </Alert>
+                        </Snackbar>
                     </Grid>
                 </Stack>
             </CardContent>
