@@ -3,8 +3,6 @@ import axios from 'axios'
 import { useDrop } from "react-dnd";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Grid from '@mui/material/Grid';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';

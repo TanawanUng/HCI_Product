@@ -7,9 +7,9 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import ReactHlsPlayer from 'react-hls-player';
+import { DndProvider } from 'react-dnd-multi-backend'
+import { HTML5toTouch } from 'rdndmb-html5-to-touch'
 
 import StatusCard from '../global-component/StatusCard'
 import Information from './Information';
@@ -99,7 +99,7 @@ function Main() {
                             {
                                 {
                                     '1': <Information setOrder={setOrder} />,
-                                    '2': <DndProvider backend={HTML5Backend}><CreateOrder setOrder={setOrder} /></DndProvider>,
+                                    '2': <DndProvider options={HTML5toTouch}><CreateOrder setOrder={setOrder} /></DndProvider>,
                                     '3': <Confirmation setOrder={setOrder} />
                                 }[order]
                             }
