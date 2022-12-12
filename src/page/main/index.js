@@ -34,6 +34,11 @@ const theme = createTheme({
             fontWeight: 600,
             color: '#374454',
         },
+        h6: {
+            fontFamily: 'Noto Sans Thai',
+            fontWeight: 600,
+            color: '#fff',
+        },
         body1: {
             fontFamily: 'Noto Sans Thai',
             color: '#374454',
@@ -90,7 +95,7 @@ function Main() {
                 </Box>
                 <Grid container spacing={2} sx={{ mt: 0 }}>
                     <Grid item xs={12} md={6}>
-                        <Box textAlign='center' sx={{ px: { xs: 0, lg: 8, xl: 28 } }}>
+                        <Box textAlign='center'>
                             {
                                 {
                                     '1': <Information setOrder={setOrder} />,

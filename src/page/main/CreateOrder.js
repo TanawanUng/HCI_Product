@@ -49,9 +49,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function CreateOrder({ setOrder }) {
     const handleClick = () => {
 
-        if (count1 === 1 && count2 === 1 && count3 === 1 && count4 === 1) {
+        if (pic[0] && pic[1] && pic[2] && pic[3]) {
             setOrder(3)
-            let order_ = [pic1, pic2, pic3, pic4]
+            let order_ = [pic[0], pic[1], pic[2], pic[3]]
             order_ = String(order_)
 
             const sendapi = {
@@ -67,68 +67,58 @@ function CreateOrder({ setOrder }) {
 
     };
 
-    const [board1, setBoard1] = useState([]);
-    const [board2, setBoard2] = useState([]);
-    const [board3, setBoard3] = useState([]);
-    const [board4, setBoard4] = useState([]);
+    const [selected1, setSelected1] = useState();
+    const [selected2, setSelected2] = useState();
+    const [selected3, setSelected3] = useState();
+    const [selected4, setSelected4] = useState();
 
-    const [{ isOver1 }, drop] = useDrop(() => ({
+    const [{ isOver1 }, drop1] = useDrop(() => ({
         accept: "image",
-        drop: (item) => addImageToBoard(item.id),
+        drop: (item) => addImageToSelected1(item.id),
         collect: (monitor) => ({
             isOver1: !!monitor.isOver(),
         }),
     }));
     const [{ isOver2 }, drop2] = useDrop(() => ({
         accept: "image",
-        drop: (item) => addImageToBoard2(item.id),
+        drop: (item) => addImageToSelected2(item.id),
         collect: (monitor) => ({
             isOver2: !!monitor.isOver(),
         }),
     }));
     const [{ isOver3 }, drop3] = useDrop(() => ({
         accept: "image",
-        drop: (item) => addImageToBoard3(item.id),
+        drop: (item) => addImageToSelected3(item.id),
         collect: (monitor) => ({
             isOver3: !!monitor.isOver(),
         }),
     }));
     const [{ isOver4 }, drop4] = useDrop(() => ({
         accept: "image",
-        drop: (item) => addImageToBoard4(item.id),
+        drop: (item) => addImageToSelected4(item.id),
         collect: (monitor) => ({
             isOver4: !!monitor.isOver(),
         }),
     }));
 
-    const addImageToBoard = (id) => {
+    const addImageToSelected1 = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-        setBoard1([pictureList[0]]);
+        setSelected1(pictureList[0]);
     };
-    const addImageToBoard2 = (id) => {
+    const addImageToSelected2 = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-        // console.log(id)
-        setBoard2([pictureList[0]]);
+        setSelected2(pictureList[0]);
     };
-
-    const addImageToBoard3 = (id) => {
+    const addImageToSelected3 = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-        setBoard3([pictureList[0]]);
+        setSelected3(pictureList[0]);
     };
-    const addImageToBoard4 = (id) => {
+    const addImageToSelected4 = (id) => {
         const pictureList = PictureList.filter((picture) => id === picture.id);
-        setBoard4([pictureList[0]]);
+        setSelected4(pictureList[0]);
     };
 
-    let count1 = 0;
-    let count2 = 0;
-    let count3 = 0;
-    let count4 = 0;
-
-    let pic1 = "";
-    let pic2 = "";
-    let pic3 = "";
-    let pic4 = "";
+    let pic = ["", "", "", ""];                     //pic = "" เป็น false, pic = "something" เป็น true ดังนั้น สามารถใช้ pic ในการเช็คได้ จึงเอา count ออกเพื่อลดความซ้ำซ้อนของโปรแกรม
 
     // ========================== Start Alert Section ==========================
     const [alertOpen, setAlertOpen] = useState(false);
@@ -147,116 +137,121 @@ function CreateOrder({ setOrder }) {
     // ========================== End Alert Section ==========================
 
     return (
-        <Card sx={{ width: { xs: 300, md: 430, sm: 400, alignItems: "center" } }} >
-            <Box sx={{ backgroundColor: '#f27314', py: 1 }}>
-                <Stack direction="row" spacing={2}>
-                    <KeyboardArrowLeftIcon fontSize="large" onClick={() => setOrder(1)} sx={{ color: '#fff' }} />
-                    <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
-                        สร้างออเดอร์
-                    </Typography>
-                </Stack>
-            </Box>
-            <CardContent>
-                <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
+        <Box sx={{ justifyContent: "center", backgroundColor: "#e3e3e3", display: 'flex' }}>
+            <Grid container spacing={2}>
+                {/* ========================== Start Header Section ========================== */}
+                <Grid item xs={12}>
+                    <Box sx={{ backgroundColor: '#f27314', py: 1 }}>
+                        <Stack direction="row" spacing={2}>
+                            <KeyboardArrowLeftIcon fontSize="large" onClick={() => setOrder(1)} sx={{ color: '#fff' }} />
+                            <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
+                                สร้างออเดอร์
+                            </Typography>
+                        </Stack>
+                    </Box>
+                </Grid>
+                {/* ========================== End Header Section ========================== */}
 
-                    {/* <Grid sx={{maxWidth:"400px" }} > */}
+                {/* ========================== Start Drag Section ========================== */}
+                <Grid item xs={12}>
+                    {PictureList.map((picture, index) => {
+                        return <Picture url={picture.url} id={picture.id} key={index} />
+                    })}
+                </Grid>
+                {/* ========================== End Drag Section ========================== */}
 
-                    <Stack direction="row" justifyContent="center" alignItems="center" sx={{ flexWrap: 'wrap' }}>
-                        {PictureList.map((picture, index) => {
-                            return <Picture url={picture.url} id={picture.id} key={index} />
-                        })}
-                    </Stack>
-
-                    <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-                        <Typography>
-                            Item 1
-                            <Grid ref={drop} style={{ backgroundColor: 'white', width: '115px', height: '55px', border: "2px solid black" }} >
-                                {board1.map((picture) => {
-                                    count1 = 1
-                                    pic1 = picture.description
-                                    console.log(picture.id)
-
-                                    return <Picture url={picture.url} id={picture.id} />;
-                                })}
-
-                            </Grid>
-                        </Typography>
-                        <Typography>
-                            Item 2
-                            <Grid ref={drop2} style={{ backgroundColor: 'white', width: '115px', height: '55px', border: "2px solid black" }} >
-
-                                {board2.map((picture) => {
-                                    count2 = 1
-                                    pic2 = picture.description
-                                    return <Picture url={picture.url} id={picture.id} />;
-                                })}
-
-                            </Grid>
-                        </Typography>
-
-                    </Stack>
-                    <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-
-                        <Typography>
-                            Item 3
-                            <Grid ref={drop3} style={{ backgroundColor: 'white', width: '115px', height: '55px', alignItems: "center", border: "2px solid black" }} >
-
-                                {board3.map((picture) => {
-                                    count3 = 1
-                                    pic3 = picture.description
-                                    return <Picture url={picture.url} id={picture.id} />;
-                                })}
-
-                            </Grid>
-                        </Typography>
-                        <Typography>
-                            Item 4
-                            <Grid ref={drop4} style={{ backgroundColor: 'white', width: '115px', height: '55px', alignItems: "center", border: "2px solid black" }} >
-
-                                {board4.map((picture) => {
-                                    count4 = 1
-                                    pic4 = picture.description
-                                    return <Picture url={picture.url} id={picture.id} />;
-
-                                })}
-                            </Grid>
-                        </Typography>
-                    </Stack>
-                    <Grid justifyContent="space-around" container spacing={1} width="250px"  >
-                        <Button
-                            onClick={() => { setBoard1([]); setBoard2([]); setBoard3([]); setBoard4([]); }}
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                borderRadius: 28,
-                                backgroundColor: "#13334c",
-                                width: 100,
-                            }}
-                        >
-                            RESET
-                        </Button>
-
-                        <Button
-                            onClick={true ? handleClick : undefined}
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                borderRadius: 28,
-                                backgroundColor: "#13334c",
-                                width: 100,
-                            }}
-                        >
-                            ORDER
-                        </Button>
-                        <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
-                            <Alert onClose={handleAlertClose} severity="error" sx={{ width: '100%' }}>
-                                กรุณาใส่ผลไม้ให้ครบก่อนไปขั้นตอนถัดไป!
-                            </Alert>
-                        </Snackbar>
+                {/* ========================== Start Drop Section ========================== */}
+                <Grid item xs={12}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} lg={3}>
+                            <Stack sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                Item 1
+                                <Box ref={drop1} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
+                                    {selected1 ? (
+                                        pic[0] = selected1.description,
+                                        <Picture url={selected1.url} id={selected1.id} />
+                                    ) : "ใส่ผลไม้ตรงนี้"}
+                                </Box>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={6} lg={3}>
+                            <Stack sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                Item 2
+                                <Box ref={drop2} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
+                                    {selected2 ? (
+                                        pic[1] = selected2.description,
+                                        <Picture url={selected2.url} id={selected2.id} />
+                                    ) : "ใส่ผลไม้ตรงนี้"}
+                                </Box>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={6} lg={3}>
+                            <Stack sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                Item 3
+                                <Box ref={drop3} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
+                                    {selected3 ? (
+                                        pic[2] = selected3.description,
+                                        <Picture url={selected3.url} id={selected3.id} />
+                                    ) : "ใส่ผลไม้ตรงนี้"}
+                                </Box>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={6} lg={3}>
+                            <Stack sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                Item 4
+                                <Box ref={drop4} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
+                                    {selected4 ? (
+                                        pic[3] = selected4.description,
+                                        <Picture url={selected4.url} id={selected4.id} />
+                                    ) : "ใส่ผลไม้ตรงนี้"}
+                                </Box>
+                            </Stack>
+                        </Grid>
                     </Grid>
-                </Stack>
-            </CardContent>
-        </Card>
+                </Grid>
+                {/* ========================== End Drop Section ========================== */}
+
+                {/* ========================== Start Button Section ========================== */}
+                <Grid item xs={12}>
+                    <Button
+                        onClick={() => { setSelected1(); setSelected2(); setSelected3(); setSelected4(); }}
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            borderRadius: 28,
+                            backgroundColor: "#13334c",
+                            width: 100,
+                            m: 2,
+                        }}
+                    >
+                        RESET
+                    </Button>
+
+                    <Button
+                        onClick={() => handleClick()}
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            borderRadius: 28,
+                            backgroundColor: "#13334c",
+                            width: 100,
+                            m: 2,
+                        }}
+                    >
+                        ORDER
+                    </Button>
+
+                    {/* ========================== Start Alert Section ========================== */}
+                    <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
+                        <Alert onClose={handleAlertClose} severity="error" sx={{ width: '100%' }}>
+                            กรุณาใส่ผลไม้ให้ครบก่อนไปขั้นตอนถัดไป!
+                        </Alert>
+                    </Snackbar>
+                    {/* ========================== End Alert Section ========================== */}
+                </Grid>
+                {/* ========================== End Button Section ========================== */}
+            </Grid>
+        </Box >
     )
 };
 

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 function Information({ setOrder }) {
     return (
-        <Box>
+        <Box sx={{ px: { xs: 0, lg: 8, xl: 28 } }}>
             <Typography variant="body1" gutterBottom align="justify" sx={{ mb: 4, letterSpacing: 2 }}>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
             </Typography>

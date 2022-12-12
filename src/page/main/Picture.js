@@ -1,4 +1,5 @@
 import { Margin } from "@mui/icons-material";
+import { Box } from "@mui/material";
 import React from "react";
 import { useDrag } from "react-dnd";
 
@@ -11,17 +12,14 @@ function Picture({ id, url }) {
     }),
   }));
   return (
-    <img
+    <Box
       ref={drag}
+      component="img"
       src={url}
-      
-      width="100px"
-      height="40px"
-      maxWidth="100px"
-      maxHeight="40px"
+
       // border="3px solid black"
-      style={{alignItems:"center",border:"3px solid black" , padding:'3px'}}
-      // { border: isDragging ? "1px solid pink" : "0px"},
+      sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" } }}
+    // { border: isDragging ? "1px solid pink" : "0px"},
     />
   );
 }
