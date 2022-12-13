@@ -152,11 +152,10 @@ function CreateOrder({ setOrder }) {
 
                 {/* ========================== Start Drag Section ========================== */}
                 <Grid item xs={12}>
-                    {/* {PictureList.map((picture, index) => {
-                        return <Picture url={picture.url} id={picture.id} key={index} />
-                    })} */}
-                    <Box sx={{height: { xs: "130px", sm: "200px" }}}>
-                        <RandomPicture />
+                    <Box sx={{ height: { xs: "130px", sm: "200px", md: "130px", lg: "200px" } }}>
+                        {PictureList.map((picture, index) => {
+                            return <Picture url={picture.url} id={picture.id} key={index} />
+                        })}
                     </Box>
                 </Grid>
                 {/* ========================== End Drag Section ========================== */}
@@ -170,7 +169,7 @@ function CreateOrder({ setOrder }) {
                                 <Box ref={drop1} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
                                     {selected1 ? (
                                         pic[0] = selected1.description,
-                                        <Picture url={selected1.url} id={selected1.id} />
+                                        <Box component="img" src={selected1.url} sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" }, }} />
                                     ) : "ใส่ผลไม้ตรงนี้"}
                                 </Box>
                             </Stack>
@@ -181,7 +180,7 @@ function CreateOrder({ setOrder }) {
                                 <Box ref={drop2} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
                                     {selected2 ? (
                                         pic[1] = selected2.description,
-                                        <Picture url={selected2.url} id={selected2.id} />
+                                        <Box component="img" src={selected2.url} sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" }, }} />
                                     ) : "ใส่ผลไม้ตรงนี้"}
                                 </Box>
                             </Stack>
@@ -192,7 +191,7 @@ function CreateOrder({ setOrder }) {
                                 <Box ref={drop3} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
                                     {selected3 ? (
                                         pic[2] = selected3.description,
-                                        <Picture url={selected3.url} id={selected3.id} />
+                                        <Box component="img" src={selected3.url} sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" }, }} />
                                     ) : "ใส่ผลไม้ตรงนี้"}
                                 </Box>
                             </Stack>
@@ -203,7 +202,7 @@ function CreateOrder({ setOrder }) {
                                 <Box ref={drop4} sx={{ backgroundColor: 'white', border: "2px solid black", width: { xs: "64px", sm: "128px" }, height: { xs: "64px", sm: "128px" }, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: '16px' }} >
                                     {selected4 ? (
                                         pic[3] = selected4.description,
-                                        <Picture url={selected4.url} id={selected4.id} />
+                                        <Box component="img" src={selected4.url} sx={{ alignItems: "center", width: { xs: "64px", sm: "128px" }, }} />
                                     ) : "ใส่ผลไม้ตรงนี้"}
                                 </Box>
                             </Stack>
@@ -254,38 +253,6 @@ function CreateOrder({ setOrder }) {
             </Grid>
         </Box >
     )
-};
-
-const RandomPicture = () => {
-    let xxs, yxs, xsm, ysm;
-
-    const getRandomInt = (min, max) => {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    };
-
-    return PictureList.map((picture, index) => {
-        xxs = getRandomInt(10, 70);
-        yxs = getRandomInt(33, 44);
-        xsm = getRandomInt(10, 40);
-        ysm = getRandomInt(27, 37);
-        return (
-            // <Box
-            //     key={index}
-            //     // ref={drag}
-            //     component="img"
-            //     src={picture.url}
-
-            //     sx={{
-            //         position: "absolute",
-            //         top: `${y + index}%`,
-            //         left: `${x + index}%`,
-            //     }}
-            // />
-            <Picture url={picture.url} id={picture.id} key={index} index={index} xxs={xxs} yxs={yxs} xsm={xsm} ysm={ysm} />
-        );
-    });
 };
 
 export default CreateOrder
