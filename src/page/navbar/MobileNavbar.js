@@ -4,7 +4,6 @@ import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -44,53 +43,63 @@ function MobileNavbar({ navItems, props, mobileOpen, handleDrawerToggle }) {
                     keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
-                    display: { xs: 'block', sm: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '240' },
+                    display: { xs: 'block', md: 'none' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: { xs: '250px', sm: '300px' } },
                 }}
             >
                 <Box sx={{ textAlign: 'center' }}>
-                    <Typography variant="h6" sx={{ m: 2 }}>
+                    <Typography variant="h5" sx={{ m: 2 }}>
                         Educational Smart Factory Platform
                     </Typography>
                     <Divider />
                     <List>
-                        {navItems.map((item, index) => (
-                            <ListItem key={index} disablePadding>
-                                {item.title !== "การเรียนรู้"
+                        {navItems.map((item) => (
+                            <Box key={item.id} >
+                                {!item.subitems
                                     ?
-                                    <ListItemButton component="a" href={item.url} sx={{ textAlign: 'center' }}>
-                                        <ListItemText primary={item.title} />
+                                    <ListItemButton component="a" href={item.url}>
+                                        <ListItemText primary={<Typography variant="h6">{item.title}</Typography>} />
                                     </ListItemButton>
                                     :
                                     <>
-                                        <ListItemButton onClick={() => handleMClick()} sx={{ textAlign: 'center' }}>
-                                            <ListItemText primary={item.title} />
-                                            {mOpen ? <ExpandLess /> : <ExpandMore />}
+                                        <ListItemButton onClick={() => handleMClick()}>
+                                            <ListItemText primary={<Typography variant="h6" sx={{ color: mOpen ? '#f27314' : '#374454 !important' }}>{item.title}</Typography>} />
+                                            {mOpen ? <ExpandLess sx={{ color: '#f27314' }} /> : <ExpandMore sx={{ color: '#374454' }} />}
                                         </ListItemButton>
                                         <Collapse in={mOpen} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
-                                                <ListItemButton component="a" href="https://smartfactory.hcilab.net/lesson/" sx={{ pl: 4 }}>
-                                                    <ListItemText primary="บทเรียน" />
-                                                </ListItemButton>
-                                                <ListItemButton onClick={() => handleMClick2()} sx={{ pl: 4 }}>
-                                                    <ListItemText primary="หน่วยสาธิต" />
-                                                    {mOpen2 ? <ExpandLess /> : <ExpandMore />}
-                                                </ListItemButton>
-                                                <Collapse in={mOpen2} timeout="auto" unmountOnExit>
-                                                    <List component="div" disablePadding>
-                                                        <ListItemButton component="a" href="https://smartfactory.hcilab.net/product-customization/" sx={{ pl: 4 }}>
-                                                            <ListItemText primary="Product Customization" />
-                                                        </ListItemButton>
-                                                        <ListItemButton component="a" href="https://smartfactory.hcilab.net/2022/08/01/telesorting-system-api-user-manual/" sx={{ pl: 4 }}>
-                                                            <ListItemText primary="TeleSorting System API User Manual" />
-                                                        </ListItemButton>
-                                                    </List>
-                                                </Collapse>
+                                                {item.subitems.map((sitem) => (
+                                                    <Box key={sitem.id}>
+                                                        {!sitem.subsubitems
+                                                            ?
+                                                            <ListItemButton component="a" href={sitem.url} sx={{ ml: 2, borderLeft: 2, borderColor: '#f27314' }}>
+                                                                <ListItemText primary={<Typography variant="h6">{sitem.title}</Typography>} />
+                                                            </ListItemButton>
+                                                            :
+                                                            <>
+                                                                <ListItemButton onClick={() => handleMClick2()} sx={{ ml: 2, borderLeft: 2, borderColor: '#f27314' }}>
+                                                                    <ListItemText primary={<Typography variant="h6" sx={{ color: mOpen2 ? '#f27314' : '#374454 !important' }}>{sitem.title}</Typography>} />
+                                                                    {mOpen2 ? <ExpandLess sx={{ color: '#f27314' }} /> : <ExpandMore sx={{ color: '#374454' }} />}
+                                                                </ListItemButton>
+
+                                                                <Collapse in={mOpen2} timeout="auto" unmountOnExit>
+                                                                    <List component="div" disablePadding>
+                                                                        {sitem.subsubitems.map((ssitem) => (
+                                                                            <ListItemButton key={ssitem.id} component="a" href={ssitem.url} sx={{ ml: 4, borderLeft: 2, borderColor: '#f27314' }}>
+                                                                                <ListItemText primary={<Typography variant="h6">{ssitem.title}</Typography>} />
+                                                                            </ListItemButton>
+                                                                        ))}
+                                                                    </List>
+                                                                </Collapse>
+                                                            </>
+                                                        }
+                                                    </Box>
+                                                ))}
                                             </List>
                                         </Collapse>
                                     </>
                                 }
-                            </ListItem>
+                            </Box>
                         ))}
                     </List>
                 </Box>

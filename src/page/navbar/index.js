@@ -20,13 +20,24 @@ import DesktopNavbar from './DesktopNavbar';
 // ========================== Start Theme Section ==========================
 const theme = createTheme({
   typography: {
-    h6: {
+    h5: {
       fontFamily: 'Noto Sans Thai',
       fontWeight: 600,
       color: '#374454',
       fontSize: '1.25rem',
+      [`@media screen and (max-width: 913px)`]: { //for vertical Surface Pro 7
+        fontSize: '0.9rem',
+      },
       [`@media screen and (max-width: 600px)`]: {
         fontSize: '0.6rem',
+      },
+    },
+    h6: {
+      fontFamily: 'Noto Sans Thai',
+      color: '#374454',
+      fontSize: '1rem',
+      '&:hover': {
+        color: '#f27314',
       },
     },
     subtitle2: {
@@ -51,13 +62,14 @@ const theme = createTheme({
         }),
       },
     },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: () => ({
-          fontFamily: 'Noto Sans Thai',
-        }),
-      },
-    },
+    // MuiMenuItem: {
+    //   styleOverrides: {
+    //     root: () => ({
+    //       fontFamily: 'Noto Sans Thai',
+    //       color: '#374454',
+    //     }),
+    //   },
+    // },
   },
 });
 // ========================== End Theme Section ==========================
@@ -66,18 +78,44 @@ const theme = createTheme({
 // ========================== Start Navigation Items Section ==========================
 const navItems = [
   {
+    id: 1,
     title: "หน้าหลัก",
     url: "https://smartfactory.hcilab.net/",
   },
   {
+    id: 2,
     title: "บล็อก",
     url: "https://smartfactory.hcilab.net/blog/",
   },
   {
+    id: 3,
     title: "การเรียนรู้",
-    url: "https://smartfactory.hcilab.net/lesson/",
+    subitems: [
+      {
+        id: 31,
+        title: "บทเรียน",
+        url: "https://smartfactory.hcilab.net/lesson/",
+      },
+      {
+        id: 32,
+        title: "หน่วยสาธิต",
+        subsubitems: [
+          {
+            id: 321,
+            title: "Product Customization",
+            url: "https://smartfactory.hcilab.net/product-customization/",
+          },
+          {
+            id: 322,
+            title: ["TeleSorting System API ", <br />, "User Manual"],
+            url: "https://smartfactory.hcilab.net/2022/08/01/telesorting-system-api-user-manual/",
+          }
+        ]
+      }
+    ]
   },
   {
+    id: 4,
     title: "เกี่ยวกับเรา",
     url: "https://smartfactory.hcilab.net/about-us/",
   }
@@ -109,11 +147,11 @@ function Navbar(props) {
               sx={{ width: 32, height: 32, pr: { xs: 0, sm: 2 } }}
             />
             <Stack sx={{ flexGrow: 1, display: 'block' }}>
-              <Typography variant="h6" component="a" href="/" sx={{ textDecoration: 'none' }}>Educational Smart Factory Platform</Typography>
+              <Typography variant="h5" component="a" href="/" sx={{ textDecoration: 'none' }}>Educational Smart Factory Platform</Typography>
               <Typography variant="subtitle2" component="a" href="/" sx={{ textDecoration: 'none', display: { xs: 'none', sm: 'block' }, mt: -1 }}>ระบบการเรียนรู้ระยะไกลของโรงงานอัจฉริยะ</Typography>
             </Stack>
 
-            <DesktopNavbar navItems={navItems}/>
+            <DesktopNavbar navItems={navItems} />
 
             <IconButton
               color="inherit"
