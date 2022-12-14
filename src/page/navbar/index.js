@@ -4,29 +4,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Collapse from '@mui/material/Collapse';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 import Logo from '../../logo.png';
-import { popoverClasses } from "@mui/material/Popover"
+import MobileNavbar from './MobileNavbar';
+import DesktopNavbar from './DesktopNavbar';
 
 
 // ========================== Start Theme Section ==========================
@@ -63,6 +51,13 @@ const theme = createTheme({
         }),
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: () => ({
+          fontFamily: 'Noto Sans Thai',
+        }),
+      },
+    },
   },
 });
 // ========================== End Theme Section ==========================
@@ -92,136 +87,12 @@ const navItems = [
 
 function Navbar(props) {
 
-  // ========================== Start Dropdown Function Section ==========================
-  let currentlyHovering = false;
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  function handleClick(event) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  }
-
-  function handleHover() {
-    currentlyHovering = true;
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
-  function handleCloseHover() {
-    currentlyHovering = false;
-    setTimeout(() => {
-      if (!currentlyHovering) {
-        handleClose();
-      }
-    }, 50);
-  }
-  // ========================== End Dropdown Function Section ==========================
-  // ========================== Start Dropdown2 Function Section ==========================
-  let currentlyHovering2 = false;
-
-  const [anchorEl2, setAnchorEl2] = useState(null);
-
-  function handleClick2(event) {
-    if (anchorEl2 !== event.currentTarget) {
-      setAnchorEl2(event.currentTarget);
-    }
-  }
-
-  function handleHover2() {
-    currentlyHovering2 = true;
-  }
-
-  function handleClose2() {
-    setAnchorEl2(null);
-  }
-
-  function handleCloseHover2() {
-    currentlyHovering2 = false;
-    setTimeout(() => {
-      if (!currentlyHovering2) {
-        handleClose2();
-      }
-    }, 50);
-  }
-  // ========================== End Dropdown2 Function Section ==========================
-  // ========================== Start Mobile Dropdown Function Section ==========================
-  const [mOpen, setMOpen] = useState(false);
-
-  const handleMClick = () => {
-    setMOpen(!mOpen);
-  };
-  // ========================== End Mobile Dropdown Function Section ==========================
-  // ========================== Start Mobile Dropdown2 Function Section ==========================
-  const [mOpen2, setMOpen2] = useState(false);
-
-  const handleMClick2 = () => {
-    setMOpen2(!mOpen2);
-  };
-  // ========================== End Mobile Dropdown2 Function Section ==========================
-
-
   // ========================== Start Mobile Navbar Section ==========================
-  const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const drawer = (
-    <Box sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ m: 2 }}>
-        Educational Smart Factory Platform
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item, index) => (
-          <ListItem key={index} disablePadding>
-            {item.title !== "การเรียนรู้"
-              ?
-              <ListItemButton component="a" href={item.url} sx={{ textAlign: 'center' }}>
-                <ListItemText primary={item.title} />
-              </ListItemButton>
-              :
-              <>
-                <ListItemButton onClick={() => handleMClick()} sx={{ textAlign: 'center' }}>
-                  <ListItemText primary={item.title} />
-                  {mOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={mOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemButton component="a" href="https://smartfactory.hcilab.net/lesson/" sx={{ pl: 4 }}>
-                      <ListItemText primary="บทเรียน" />
-                    </ListItemButton>
-                    <ListItemButton onClick={() => handleMClick2()} sx={{ pl: 4 }}>
-                      <ListItemText primary="หน่วยสาธิต" />
-                      {mOpen2 ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-                    <Collapse in={mOpen2} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        <ListItemButton component="a" href="https://smartfactory.hcilab.net/product-customization/" sx={{ pl: 4 }}>
-                          <ListItemText primary="Product Customization" />
-                        </ListItemButton>
-                        <ListItemButton component="a" href="https://smartfactory.hcilab.net/2022/08/01/telesorting-system-api-user-manual/" sx={{ pl: 4 }}>
-                          <ListItemText primary="TeleSorting System API User Manual" />
-                        </ListItemButton>
-                      </List>
-                    </Collapse>
-                  </List>
-                </Collapse>
-              </>
-            }
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
   // ========================== End Mobile Navbar Section ==========================
 
 
@@ -241,72 +112,9 @@ function Navbar(props) {
               <Typography variant="h6" component="a" href="/" sx={{ textDecoration: 'none' }}>Educational Smart Factory Platform</Typography>
               <Typography variant="subtitle2" component="a" href="/" sx={{ textDecoration: 'none', display: { xs: 'none', sm: 'block' }, mt: -1 }}>ระบบการเรียนรู้ระยะไกลของโรงงานอัจฉริยะ</Typography>
             </Stack>
-            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-              {navItems.map((item, index) => (
-                item.title !== "การเรียนรู้"
-                  ? <Button key={index} sx={{ mx: { xs: 0, md: 0.5 }, mt: 1.8, pb: 2.7 }} href={item.url}>
-                    {item.title}
-                  </Button>
-                  : <>
-                    <Button key={index} sx={{ mx: { xs: 0, md: 0.5 }, mt: 1.8, pb: 2.7 }} onClick={handleClick} onMouseOver={handleClick} onMouseLeave={handleCloseHover}>
-                      {item.title}
-                    </Button>
-                    <Menu
-                      anchorEl={anchorEl}
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                      MenuListProps={{
-                        onMouseEnter: handleHover,
-                        onMouseLeave: handleCloseHover,
-                        style: { pointerEvents: "auto" }
-                      }}
-                      sx={{ [`&.${popoverClasses.root}`]: { pointerEvents: "none" }, }}
-                      TransitionComponent={Fade}
-                      PaperProps={{
-                        sx: {
-                          borderTop: 4,
-                          borderColor: '#f27314',
-                          mt: -0.5,
-                        },
-                      }}
-                      disableAutoFocusItem
-                    >
-                      <MenuItem sx={{ pl: 3.5, pt: 3, pr: 17, color: '#374454' }} onMouseEnter={(e) => { e.target.style.color = '#f27314'; e.target.style.backgroundColor = '#fff'; }} onMouseLeave={(e) => e.target.style.color = '#374454'} component="a" href={item.url}>บทเรียน</MenuItem>
-                      <MenuItem sx={{ pl: 3.5, pb: 3, pr: 17, color: '#374454' }} onMouseEnter={(e) => { e.target.style.color = '#f27314'; e.target.style.backgroundColor = '#fff'; }} onMouseLeave={(e) => e.target.style.color = '#374454'} onMouseOver={handleClick2}>หน่วยสาธิต</MenuItem>
-                      <Menu
-                        anchorEl={anchorEl2}
-                        open={Boolean(anchorEl2)}
-                        onClose={handleClose2}
-                        MenuListProps={{
-                          onMouseEnter: handleHover2,
-                          onMouseLeave: handleCloseHover2,
-                          style: { pointerEvents: "auto" }
-                        }}
-                        sx={{ [`&.${popoverClasses.root}`]: { pointerEvents: "none" }, }}
-                        TransitionComponent={Fade}
-                        PaperProps={{
-                          sx: {
-                            borderTop: 4,
-                            borderColor: '#f27314',
-                          },
-                        }}
-                        anchorOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right',
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'left',
-                        }}
-                        disableAutoFocusItem
-                      >
-                        <MenuItem sx={{ px: 3.5, pt: 3, color: '#374454' }} onMouseEnter={(e) => { e.target.style.color = '#f27314'; e.target.style.backgroundColor = '#fff'; }} onMouseLeave={(e) => e.target.style.color = '#374454'} component="a" href="https://smartfactory.hcilab.net/product-customization/">Product Customization</MenuItem>
-                        <MenuItem sx={{ px: 3.5, pb: 3, color: '#374454' }} onMouseEnter={(e) => { e.target.style.color = '#f27314'; e.target.style.backgroundColor = '#fff'; }} onMouseLeave={(e) => e.target.style.color = '#374454'} component="a" href="https://smartfactory.hcilab.net/2022/08/01/telesorting-system-api-user-manual/">TeleSorting System API <br />User Manual</MenuItem>
-                      </Menu>
-                    </Menu>
-                  </>
-              ))}
-            </Box>
+
+            <DesktopNavbar navItems={navItems}/>
+
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -316,28 +124,13 @@ function Navbar(props) {
             >
               <MenuIcon />
             </IconButton>
+
             <SearchIcon fontSize='medium' sx={{ mx: { xs: 0, md: 2, lg: 4 } }} />
           </Toolbar>
         </AppBar>
 
-        <Box component="nav">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor="right"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: 'block', sm: 'none' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '240' },
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Box>
+        <MobileNavbar navItems={navItems} props={props} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+
       </ThemeProvider>
     </Box>
   );
