@@ -143,7 +143,7 @@ function Navbar(props) {
               alt="Logo"
               src={Logo}
               component="a"
-              href="/"
+              href="/login"
               sx={{ width: 32, height: 32, pr: { xs: 0, sm: 2 } }}
             />
             <Stack sx={{ flexGrow: 1, display: 'block' }}>
