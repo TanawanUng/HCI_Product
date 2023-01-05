@@ -1,5 +1,6 @@
 {
   "name": "hci_product",
+  "homepage": "https://www.upkasia.com/", //ใส่ลิงก์ homepage ตามในวิดีโอนี้ https://youtu.be/aGLUaDaa4ko?t=3885 เวลา 1:04:45
   "version": "0.1.0",
   "private": true,
   "dependencies": {

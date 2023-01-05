@@ -59,7 +59,7 @@ function SingUp(props) {
 
     return (
         <>
-            {/* <div className="App">
+            <div className="App">
                 <header className="App-header">
                     <h2>Sign Up</h2>
                     <p>{props.serverMessage}</p>
@@ -68,11 +68,11 @@ function SingUp(props) {
                         <input type="email" placeholder="Email Adress" name="email" value={signUpDetails.email} onChange={handleChange} />
                         <input type="password" placeholder="Password" name="pass" value={signUpDetails.pass} onChange={handleChange} />
                         <input type="submit" onClick={handleSubmit} />
-                    </div> */}
+                    </div>
             {/* <img src={logo} className="App-logo" alt="logo" /> */}
-            {/* </header>
-            </div> */}
-            <ThemeProvider theme={theme}>
+            </header>
+            </div>
+            {/* <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box
@@ -155,7 +155,7 @@ function SingUp(props) {
                     </Box>
                     <Copyright sx={{ mt: 5 }} />
                 </Container>
-            </ThemeProvider>
+            </ThemeProvider> */}
             <SignUpAPI APIDetailsSignUp={APIDetailsSignUp} setUsername={props.setUsername} setIsLoggedIn={props.setIsLoggedIn} setServerMessage={props.setServerMessage} />
         </>
     )

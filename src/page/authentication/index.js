@@ -56,7 +56,7 @@ function Login(props) {
     console.log(loginDetails)
     return (
         <>
-            {/* <div className="App">
+            <div className="App">
                 <header className="App-header">
                     <h2>Login</h2>
                     <p>{props.serverMessage}</p>
@@ -67,11 +67,11 @@ function Login(props) {
                     </div>
                     <form>
                         <button type="submit" formaction="/signup">Create New Account</button>
-                    </form> */}
+                    </form>
                     {/* <img src={logo} className="App-logo" alt="logo" ></img> */}
-                {/* </header>
-            </div > */}
-            < ThemeProvider theme={theme} >
+                </header>
+            </div >
+            {/* < ThemeProvider theme={theme} >
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box
@@ -141,7 +141,7 @@ function Login(props) {
                     </Box>
                     <Copyright sx={{ mt: 8, mb: 4 }} />
                 </Container>
-            </ThemeProvider >
+            </ThemeProvider > */}
             <LoginAPI APIDetailsLogin={APIDetailsLogin} setUsername={props.setUsername} setIsLoggedIn={props.setIsLoggedIn} setServerMessage={props.setServerMessage} />
         </>
     )
