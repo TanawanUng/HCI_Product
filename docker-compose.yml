@@ -1,0 +1,21 @@
+version: '3'
+services: 
+    hci_product-web:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        image: hci_product/fe
+        container_name: site_fe
+        ports: 
+            - "8080:80"
+        volumes: 
+            # - ./build:/var/www/html
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+    docker_proxy:
+        image: nginx
+        container_name: docker_proxy
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - "80:80"

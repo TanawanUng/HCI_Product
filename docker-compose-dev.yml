@@ -1,0 +1,14 @@
+version: '3'
+services: 
+    hci_product-web.dev:
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        image: hci_product/fe.dev
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        # mapping volumes ให้ใช้ file บน directory ของเราแต่ตัว node_modules เราจะใช้บน container
+        container_name: hci_product-web.dev
