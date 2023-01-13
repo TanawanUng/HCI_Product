@@ -1,36 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "my-first-frontity-project",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Frontity project",
-  "keywords": [
-    "frontity"
-  ],
-  "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
-  },
-  "scripts": {
-    "dev": "frontity dev",
-    "build": "frontity build",
-    "serve": "frontity serve"
-  },
-  "prettier": {},
-  "dependencies": {
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@frontity/core": "^1.15.1",
-    "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme",
-    "@frontity/tiny-router": "^1.4.4",
-    "@frontity/wp-source": "^1.11.7",
-    "@mui/icons-material": "^5.5.1",
-    "@mui/material": "^5.5.3",
-    "@mui/styled-engine-sc": "^5.5.2",
-    "frontity": "^1.17.2",
-    "styled-components": "^5.3.5"
-=======
   "name": "hci_product",
   "homepage": "https://www.upkasia.com/", //ใส่ลิงก์ homepage ตามในวิดีโอนี้ https://youtu.be/aGLUaDaa4ko?t=3885 เวลา 1:04:45
   "version": "0.1.0",
@@ -83,6 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
->>>>>>> dev
   }
 }
